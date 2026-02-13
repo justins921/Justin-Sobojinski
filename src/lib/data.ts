@@ -282,6 +282,80 @@ const PLACEHOLDER_PAGES: Record<string, { title: string; description: string; co
       { type: "paragraph", text: "<a href=\"https://gsprogolf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GSPro</a> — $250/year" },
     ],
   },
+  "whats-in-my-bag": {
+    title: "What\u0027s In My Bag",
+    description: "A complete breakdown of the golf equipment Justin carries on the course — clubs, balls, accessories, and more.",
+    content: [
+      // --- Woods ---
+      { type: "heading", level: 2, text: "Woods — Titleist GT2" },
+      { type: "paragraph", text: "All woods fitted with <strong>Mitsubishi Tensei 1K Blue 55</strong> shafts (Stiff), <strong>Golf Pride MCC White</strong> grips, SureFit setting A2." },
+      { type: "table", headers: ["Club", "Loft", "Length"], rows: [
+        ["Driver", "10\u00ba", "44.5\u2033"],
+        ["3 Wood", "15\u00ba", "42\u2033"],
+        ["5 Wood", "18\u00ba", "41\u2033"],
+        ["7 Wood", "21\u00ba", "40.5\u2033"],
+      ] },
+      { type: "divider" },
+
+      // --- Irons ---
+      { type: "heading", level: 2, text: "Irons — Mizuno Pro S3" },
+      { type: "paragraph", text: "All irons fitted with <strong>Nippon NS Pro 950 GH Neo</strong> shafts (Stiff), <strong>Golf Pride MCC Align</strong> grips, 1\u00ba upright lie angle." },
+      { type: "table", headers: ["Club", "Loft", "Length"], rows: [
+        ["5 Iron", "27\u00ba", "38.25\u2033"],
+        ["6 Iron", "30\u00ba", "37.75\u2033"],
+        ["7 Iron", "34\u00ba", "37.25\u2033"],
+        ["8 Iron", "38\u00ba", "36.75\u2033"],
+        ["9 Iron", "42\u00ba", "36.25\u2033"],
+        ["Pitching Wedge", "46\u00ba", "35.75\u2033"],
+      ] },
+      { type: "divider" },
+
+      // --- Wedges ---
+      { type: "heading", level: 2, text: "Wedges — Titleist Vokey SM10" },
+      { type: "paragraph", text: "All wedges fitted with <strong>True Temper Dynamic Gold S200 Steel</strong> shafts (Wedge flex), stock grips." },
+      { type: "table", headers: ["Club", "Loft", "Bounce", "Grind", "Length"], rows: [
+        ["Gap Wedge", "50\u00ba", "12\u00ba", "F", "35.50\u2033"],
+        ["Sand Wedge", "54\u00ba", "8\u00ba", "M", "35.25\u2033"],
+        ["Lob Wedge", "58\u00ba", "10\u00ba", "S", "35.00\u2033"],
+      ] },
+      { type: "divider" },
+
+      // --- Putter ---
+      { type: "heading", level: 2, text: "Putter" },
+      { type: "callout", emoji: "🤣", title: "", text: "See putter list below — who knows what\u0027s in my bag right now!", variant: "tip" },
+      { type: "divider" },
+
+      // --- Putters ---
+      { type: "heading", level: 2, text: "Putters" },
+      { type: "table", headers: ["Putter", "Length", "Lie Angle", "Loft", "Grip"], rows: [
+        ["YES! Callie", "34\u2033", "72\u00ba", "3\u00ba", "SuperStroke Pistol Tour"],
+        ["2025 Scotty Cameron Studio Style Newport 2", "34\u2033", "70\u00ba", "3.5\u00ba", "Full Contact Slim"],
+        ["Scotty Cameron H24 Limited Phantom 9.2", "34.5\u2033", "70\u00ba", "3.5\u00ba", "Full Contact Grip"],
+        ["Scotty Cameron Phantom 11R OC", "33.5\u2033", "71.5\u00ba", "4\u00ba", "Full Contact Slim"],
+        ["TaylorMade Spider Tour X #3", "34\u2033", "70\u00ba", "3\u00ba", "Super Stroke Pistol GT 1.0"],
+        ["Adams Prospect (Left Handed)", "34\u2033", "—", "3\u00ba", "—"],
+      ] },
+      { type: "divider" },
+
+      // --- Not currently gaming ---
+      { type: "heading", level: 2, text: "Other Clubs I Have, Not Currently Gaming" },
+      { type: "heading", level: 3, text: "Mini Driver — Titleist GT280" },
+      { type: "paragraph", text: "Shaft: Mitsubishi Tensei 1K Blue 55 (Stiff) · Length: 42.5\u2033 · Grip: Golf Pride MCC White · SureFit: A2 · Loft: 13\u00ba" },
+      { type: "heading", level: 3, text: "Pitching Wedge — Vokey WedgeWorks 44\u00ba F" },
+      { type: "paragraph", text: "Shaft Flex: Wedge · Loft: 44\u00ba · Grind: F" },
+      { type: "divider" },
+
+      // --- Other ---
+      { type: "heading", level: 2, text: "Other Gear" },
+      { type: "table", headers: ["Item", "Details"], rows: [
+        ["Balls", "Titleist Pro V1x"],
+        ["Tees", "Brentwood 3 1/4\u2033"],
+        ["Towel", "Sun Day Red"],
+        ["Range Finder", "Precision Pro NX9"],
+        ["Brush", "Groove-it Mini G"],
+      ] },
+    ],
+  },
 };
 
 export async function getContentPage(

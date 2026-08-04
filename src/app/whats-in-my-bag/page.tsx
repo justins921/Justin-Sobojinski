@@ -14,14 +14,34 @@ export default async function WhatsInMyBagPage() {
   if (!page) notFound();
 
   return (
-    <div className="container-page py-12 sm:py-16">
-      <div className="mx-auto max-w-3xl">
+    <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>
+      <div style={{ maxWidth: "980px", margin: "0 auto" }}>
         <header className="mb-10">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h1
+            style={{
+              fontFamily:
+                '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+              fontSize: "40px",
+              fontWeight: 600,
+              lineHeight: 1.1,
+              color: "#1d1d1f",
+            }}
+          >
             {page.title}
           </h1>
           {page.description && (
-            <p className="mt-3 text-lg text-gray-500">{page.description}</p>
+            <p
+              className="mt-3"
+              style={{
+                fontSize: "17px",
+                fontWeight: 400,
+                lineHeight: 1.47,
+                letterSpacing: "-0.374px",
+                color: "#7a7a7a",
+              }}
+            >
+              {page.description}
+            </p>
           )}
         </header>
         <ContentRenderer blocks={page.content} />

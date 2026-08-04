@@ -26,15 +26,36 @@ export default function VideoSearch({ initialQuery }: { initialQuery: string }) 
   return (
     <form onSubmit={handleSearch} className="relative max-w-md">
       <Search
-        size={18}
-        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+        size={16}
+        className="absolute top-1/2 -translate-y-1/2"
+        style={{ left: "16px", color: "#7a7a7a" }}
       />
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search videos..."
-        className="w-full rounded-lg border border-gray-300 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+        style={{
+          width: "100%",
+          height: "44px",
+          borderRadius: "9999px",
+          border: "1px solid #e0e0e0",
+          backgroundColor: "#ffffff",
+          padding: "12px 20px 12px 42px",
+          fontSize: "14px",
+          lineHeight: 1.43,
+          letterSpacing: "-0.224px",
+          color: "#1d1d1f",
+          outline: "none",
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = "#0066cc";
+          e.currentTarget.style.boxShadow = "0 0 0 3px rgba(0, 102, 204, 0.12)";
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.borderColor = "#e0e0e0";
+          e.currentTarget.style.boxShadow = "none";
+        }}
       />
     </form>
   );

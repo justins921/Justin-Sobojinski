@@ -45,9 +45,10 @@ export default function AdminDashboardPage() {
             <a
               key={stat.href}
               href={stat.href}
-              className="flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-md"
+              className="flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-transform active:scale-95"
+              style={{ borderColor: "#e0e0e0", borderRadius: "18px" }}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ backgroundColor: "#f5f5f7", color: "#0066cc" }}>
                 <Icon size={20} />
               </div>
               <div>

@@ -20,12 +20,30 @@ export default async function VideosPage({ searchParams }: Props) {
   const videos = await getVideos({ search: search || undefined });
 
   return (
-    <div className="container-page py-12 sm:py-16">
+    <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>
       <div className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <h1
+          style={{
+            fontFamily:
+              '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontSize: "40px",
+            fontWeight: 600,
+            lineHeight: 1.1,
+            color: "#1d1d1f",
+          }}
+        >
           Video Library
         </h1>
-        <p className="mt-2 text-lg text-gray-500">
+        <p
+          className="mt-2"
+          style={{
+            fontSize: "17px",
+            fontWeight: 400,
+            lineHeight: 1.47,
+            letterSpacing: "-0.374px",
+            color: "#7a7a7a",
+          }}
+        >
           Searchable archive of all YouTube uploads.
         </p>
       </div>
@@ -39,12 +57,28 @@ export default async function VideosPage({ searchParams }: Props) {
           ))}
         </div>
       ) : (
-        <div className="mt-8 rounded-xl border-2 border-dashed border-gray-200 p-16 text-center">
-          <Youtube className="mx-auto h-12 w-12 text-gray-300" />
-          <h3 className="mt-4 text-lg font-semibold text-gray-900">
+        <div
+          className="mt-8 p-16 text-center"
+          style={{
+            borderRadius: "18px",
+            border: "2px dashed #e0e0e0",
+          }}
+        >
+          <Youtube
+            className="mx-auto"
+            size={48}
+            style={{ color: "#d2d2d7" }}
+          />
+          <h3
+            className="mt-4"
+            style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
+          >
             {search ? "No videos found" : "No Videos Yet"}
           </h3>
-          <p className="mt-2 text-sm text-gray-500">
+          <p
+            className="mt-2"
+            style={{ fontSize: "14px", color: "#7a7a7a" }}
+          >
             {search
               ? `No videos matching "${search}". Try a different search.`
               : "Videos will appear here once the YouTube sync is configured."}

@@ -33,14 +33,29 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-40 flex w-56 flex-col border-r border-gray-200 bg-white">
-        <div className="flex h-16 items-center gap-2 border-b border-gray-200 px-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-700 text-xs font-bold text-white">
-            JS
-          </div>
-          <span className="text-sm font-bold text-gray-900">Admin</span>
+    <div className="flex min-h-screen" style={{ backgroundColor: "#f5f5f7" }}>
+      {/* Sidebar – surface-black */}
+      <aside
+        className="fixed inset-y-0 left-0 z-40 flex w-56 flex-col"
+        style={{ backgroundColor: "#000000" }}
+      >
+        <div
+          className="flex items-center gap-2 px-4"
+          style={{
+            height: "44px",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "14px",
+              fontWeight: 600,
+              letterSpacing: "-0.12px",
+              color: "#ffffff",
+            }}
+          >
+            JS Admin
+          </span>
         </div>
 
         <nav className="flex-1 space-y-0.5 px-2 py-3">
@@ -51,11 +66,17 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  active
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                }`}
+                className="flex items-center gap-2.5 px-3 py-2"
+                style={{
+                  borderRadius: "8px",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  backgroundColor: active
+                    ? "rgba(41, 151, 255, 0.15)"
+                    : "transparent",
+                  color: active ? "#2997ff" : "rgba(255, 255, 255, 0.7)",
+                  transition: "background-color 0.15s ease",
+                }}
               >
                 <Icon size={16} />
                 {item.label}
@@ -64,16 +85,36 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           })}
         </nav>
 
-        <div className="border-t border-gray-200 px-2 py-3 space-y-0.5">
+        <div
+          className="px-2 py-3 space-y-0.5"
+          style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}
+        >
           <Link
             href="/"
-            className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+            className="flex items-center gap-2.5 px-3 py-2"
+            style={{
+              borderRadius: "8px",
+              fontSize: "14px",
+              fontWeight: 500,
+              color: "rgba(255, 255, 255, 0.7)",
+              transition: "background-color 0.15s ease",
+            }}
           >
             <ChevronLeft size={16} /> View Site
           </Link>
           <button
             onClick={handleLogout}
-            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50"
+            className="flex w-full items-center gap-2.5 px-3 py-2"
+            style={{
+              borderRadius: "8px",
+              fontSize: "14px",
+              fontWeight: 500,
+              color: "#ff453a",
+              transition: "background-color 0.15s ease",
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
             <LogOut size={16} /> Sign Out
           </button>

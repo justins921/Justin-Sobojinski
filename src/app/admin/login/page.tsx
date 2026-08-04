@@ -38,27 +38,76 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+    <div
+      className="flex min-h-screen items-center justify-center px-4"
+      style={{ backgroundColor: "#f5f5f7" }}
+    >
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-700 text-lg font-bold text-white">
+          <span
+            style={{
+              fontSize: "28px",
+              fontWeight: 600,
+              lineHeight: 1.14,
+              letterSpacing: "0.196px",
+              color: "#1d1d1f",
+            }}
+          >
             JS
-          </div>
-          <h1 className="mt-4 text-2xl font-bold text-gray-900">Admin Login</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          </span>
+          <h1
+            className="mt-4"
+            style={{
+              fontFamily:
+                '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+              fontSize: "28px",
+              fontWeight: 600,
+              lineHeight: 1.14,
+              color: "#1d1d1f",
+            }}
+          >
+            Admin Login
+          </h1>
+          <p
+            className="mt-1"
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.43,
+              letterSpacing: "-0.224px",
+              color: "#7a7a7a",
+            }}
+          >
             Sign in to manage your site content.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
+            <div
+              style={{
+                borderRadius: "11px",
+                backgroundColor: "#fef5f5",
+                border: "1px solid #ffcdd2",
+                padding: "12px",
+                fontSize: "14px",
+                color: "#c62828",
+              }}
+            >
               {error}
             </div>
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              style={{
+                display: "block",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#1d1d1f",
+                marginBottom: "4px",
+              }}
+            >
               Email
             </label>
             <input
@@ -67,12 +116,40 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+              style={{
+                display: "block",
+                width: "100%",
+                borderRadius: "11px",
+                border: "1px solid #e0e0e0",
+                backgroundColor: "#ffffff",
+                padding: "11px 17px",
+                fontSize: "17px",
+                lineHeight: 1.47,
+                color: "#1d1d1f",
+                outline: "none",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = "#0066cc";
+                e.currentTarget.style.boxShadow = "0 0 0 3px rgba(0, 102, 204, 0.12)";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "#e0e0e0";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              style={{
+                display: "block",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#1d1d1f",
+                marginBottom: "4px",
+              }}
+            >
               Password
             </label>
             <input
@@ -81,7 +158,26 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+              style={{
+                display: "block",
+                width: "100%",
+                borderRadius: "11px",
+                border: "1px solid #e0e0e0",
+                backgroundColor: "#ffffff",
+                padding: "11px 17px",
+                fontSize: "17px",
+                lineHeight: 1.47,
+                color: "#1d1d1f",
+                outline: "none",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = "#0066cc";
+                e.currentTarget.style.boxShadow = "0 0 0 3px rgba(0, 102, 204, 0.12)";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "#e0e0e0";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             />
           </div>
 

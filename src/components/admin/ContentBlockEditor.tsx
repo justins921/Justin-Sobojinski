@@ -238,7 +238,7 @@ export default function ContentBlockEditor({ blocks, onChange }: Props) {
                         pros: [...block.pros, ""],
                       })
                     }
-                    className="mt-1 text-xs text-brand-700"
+                    className="mt-1 text-xs text-primary"
                   >
                     + Add Pro
                   </button>
@@ -265,7 +265,7 @@ export default function ContentBlockEditor({ blocks, onChange }: Props) {
                         cons: [...block.cons, ""],
                       })
                     }
-                    className="mt-1 text-xs text-brand-700"
+                    className="mt-1 text-xs text-primary"
                   >
                     + Add Con
                   </button>
@@ -349,7 +349,7 @@ export default function ContentBlockEditor({ blocks, onChange }: Props) {
           <button
             key={bt.type}
             onClick={() => addBlock(bt.type)}
-            className="inline-flex items-center gap-1 rounded-lg border border-dashed border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 hover:border-brand-400 hover:text-brand-700"
+            className="inline-flex items-center gap-1 rounded-lg border border-dashed border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 hover:border-primary hover:text-primary"
           >
             <Plus size={12} /> {bt.label}
           </button>

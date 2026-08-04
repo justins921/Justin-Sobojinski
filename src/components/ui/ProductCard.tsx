@@ -10,7 +10,10 @@ export default function ProductCard({ product }: { product: Product }) {
       rel="noopener noreferrer"
       className="card group flex flex-col"
     >
-      <div className="relative aspect-square overflow-hidden bg-gray-100">
+      <div
+        className="relative aspect-square overflow-hidden"
+        style={{ backgroundColor: "#f5f5f7" }}
+      >
         <Image
           src={product.image_url}
           alt={product.title}
@@ -20,24 +23,53 @@ export default function ProductCard({ product }: { product: Product }) {
         />
       </div>
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-sm font-semibold text-gray-900 group-hover:text-brand-700">
+        <h3
+          style={{
+            fontSize: "17px",
+            fontWeight: 600,
+            lineHeight: 1.47,
+            letterSpacing: "-0.374px",
+            color: "#1d1d1f",
+          }}
+        >
           {product.title}
         </h3>
         {product.description && (
-          <p className="mt-1 line-clamp-2 text-xs text-gray-500">
+          <p
+            className="mt-1 line-clamp-2"
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.43,
+              letterSpacing: "-0.224px",
+              color: "#7a7a7a",
+            }}
+          >
             {product.description}
           </p>
         )}
         <div className="mt-auto flex items-center justify-between pt-3">
-          <span className="text-lg font-bold text-gray-900">
+          <span
+            style={{
+              fontSize: "17px",
+              fontWeight: 400,
+              color: "#1d1d1f",
+            }}
+          >
             ${product.price}
           </span>
-          <span className="inline-flex items-center gap-1 text-xs font-medium text-brand-700">
+          <span
+            className="inline-flex items-center gap-1"
+            style={{
+              fontSize: "14px",
+              fontWeight: 500,
+              color: "#0066cc",
+            }}
+          >
             Shop on Etsy <ExternalLink size={12} />
           </span>
         </div>
         {product.category && (
-          <span className="mt-2 badge w-fit">{product.category}</span>
+          <span className="badge mt-2 w-fit">{product.category}</span>
         )}
       </div>
     </a>

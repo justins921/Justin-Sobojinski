@@ -19,7 +19,10 @@ function DealCard({ link }: { link: AffiliateLink }) {
       className="card group flex flex-col"
     >
       {link.image_url && (
-        <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
+        <div
+          className="relative aspect-[16/10] overflow-hidden"
+          style={{ backgroundColor: "#f5f5f7" }}
+        >
           <Image
             src={link.image_url}
             alt={link.title}
@@ -31,26 +34,72 @@ function DealCard({ link }: { link: AffiliateLink }) {
       )}
       <div className="flex flex-1 flex-col p-5">
         <span className="badge mb-2 w-fit">{link.category}</span>
-        <h3 className="text-base font-semibold text-gray-900 group-hover:text-brand-700">
+        <h3
+          style={{
+            fontSize: "17px",
+            fontWeight: 600,
+            lineHeight: 1.47,
+            letterSpacing: "-0.374px",
+            color: "#1d1d1f",
+          }}
+        >
           {link.title}
         </h3>
         {link.description && (
-          <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+          <p
+            className="mt-1 line-clamp-2"
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.43,
+              letterSpacing: "-0.224px",
+              color: "#7a7a7a",
+            }}
+          >
             {link.description}
           </p>
         )}
         {link.discount_code && (
-          <div className="mt-3 flex items-center gap-2 rounded-lg border border-dashed border-brand-300 bg-brand-50 p-2.5">
-            <Copy size={14} className="shrink-0 text-brand-700" />
+          <div
+            className="mt-3 flex items-center gap-2"
+            style={{
+              borderRadius: "11px",
+              border: "1px solid #e0e0e0",
+              backgroundColor: "#f5f5f7",
+              padding: "10px",
+            }}
+          >
+            <Copy size={14} className="shrink-0" style={{ color: "#0066cc" }} />
             <div>
-              <p className="text-xs text-brand-600">{link.discount_text || "Use code"}</p>
-              <p className="font-mono text-sm font-bold text-brand-800">
+              <p
+                style={{
+                  fontSize: "12px",
+                  letterSpacing: "-0.12px",
+                  color: "#7a7a7a",
+                }}
+              >
+                {link.discount_text || "Use code"}
+              </p>
+              <p
+                className="font-mono"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  color: "#1d1d1f",
+                }}
+              >
                 {link.discount_code}
               </p>
             </div>
           </div>
         )}
-        <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-brand-700">
+        <span
+          className="mt-auto inline-flex items-center gap-1 pt-4"
+          style={{
+            fontSize: "17px",
+            fontWeight: 500,
+            color: "#0066cc",
+          }}
+        >
           Get Deal <ExternalLink size={14} />
         </span>
       </div>
@@ -65,12 +114,30 @@ export default async function DealsPage() {
   ]);
 
   return (
-    <div className="container-page py-12 sm:py-16">
+    <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>
       <div className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <h1
+          style={{
+            fontFamily:
+              '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontSize: "40px",
+            fontWeight: 600,
+            lineHeight: 1.1,
+            color: "#1d1d1f",
+          }}
+        >
           Deals & Recommended Gear
         </h1>
-        <p className="mt-2 text-lg text-gray-500">
+        <p
+          className="mt-2"
+          style={{
+            fontSize: "17px",
+            fontWeight: 400,
+            lineHeight: 1.47,
+            letterSpacing: "-0.374px",
+            color: "#7a7a7a",
+          }}
+        >
           Products I personally use and recommend. Some links may be affiliate
           links.
         </p>
@@ -78,9 +145,35 @@ export default async function DealsPage() {
 
       {categories.length > 0 && (
         <div className="mb-8 flex flex-wrap gap-2">
-          <span className="badge bg-brand-700 text-white">All</span>
+          <span
+            className="inline-flex items-center font-medium cursor-pointer"
+            style={{
+              fontSize: "12px",
+              lineHeight: 1.0,
+              letterSpacing: "-0.12px",
+              padding: "5px 12px",
+              borderRadius: "9999px",
+              backgroundColor: "#0066cc",
+              color: "#ffffff",
+            }}
+          >
+            All
+          </span>
           {categories.map((cat) => (
-            <span key={cat} className="badge cursor-pointer hover:bg-brand-200">
+            <span
+              key={cat}
+              className="inline-flex items-center font-medium cursor-pointer"
+              style={{
+                fontSize: "12px",
+                lineHeight: 1.0,
+                letterSpacing: "-0.12px",
+                padding: "5px 12px",
+                borderRadius: "9999px",
+                backgroundColor: "#ffffff",
+                color: "#1d1d1f",
+                border: "1px solid #e0e0e0",
+              }}
+            >
               {cat}
             </span>
           ))}
@@ -94,19 +187,45 @@ export default async function DealsPage() {
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border-2 border-dashed border-gray-200 p-16 text-center">
-          <Tag className="mx-auto h-12 w-12 text-gray-300" />
-          <h3 className="mt-4 text-lg font-semibold text-gray-900">
+        <div
+          className="p-16 text-center"
+          style={{
+            borderRadius: "18px",
+            border: "2px dashed #e0e0e0",
+          }}
+        >
+          <Tag className="mx-auto" size={48} style={{ color: "#d2d2d7" }} />
+          <h3
+            className="mt-4"
+            style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
+          >
             Deals Coming Soon
           </h3>
-          <p className="mt-2 text-sm text-gray-500">
+          <p
+            className="mt-2"
+            style={{ fontSize: "14px", color: "#7a7a7a" }}
+          >
             Affiliate links and gear recommendations will appear here.
           </p>
         </div>
       )}
 
-      <div className="mt-12 rounded-lg bg-gray-50 p-6 text-center">
-        <p className="text-xs text-gray-400">
+      <div
+        className="mt-12 p-6 text-center"
+        style={{
+          borderRadius: "11px",
+          backgroundColor: "#f5f5f7",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "12px",
+            fontWeight: 400,
+            lineHeight: 1.43,
+            letterSpacing: "-0.12px",
+            color: "#7a7a7a",
+          }}
+        >
           Disclosure: Some links on this page are affiliate links. I may earn a
           small commission at no extra cost to you if you make a purchase through
           these links. I only recommend products I personally use and trust.

@@ -15,13 +15,31 @@ export default async function ShopPage() {
   const categories = [...new Set(products.map((p) => p.category).filter(Boolean))];
 
   return (
-    <div className="container-page py-12 sm:py-16">
+    <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <h1
+          style={{
+            fontFamily:
+              '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontSize: "40px",
+            fontWeight: 600,
+            lineHeight: 1.1,
+            color: "#1d1d1f",
+          }}
+        >
           Shop
         </h1>
-        <p className="mt-2 text-lg text-gray-500">
+        <p
+          className="mt-2"
+          style={{
+            fontSize: "17px",
+            fontWeight: 400,
+            lineHeight: 1.47,
+            letterSpacing: "-0.374px",
+            color: "#7a7a7a",
+          }}
+        >
           Custom golf accessories, handcrafted and available on Etsy.
         </p>
       </div>
@@ -29,9 +47,35 @@ export default async function ShopPage() {
       {/* Category filter pills */}
       {categories.length > 0 && (
         <div className="mb-8 flex flex-wrap gap-2">
-          <span className="badge bg-brand-700 text-white">All</span>
+          <span
+            className="inline-flex items-center font-medium cursor-pointer"
+            style={{
+              fontSize: "12px",
+              lineHeight: 1.0,
+              letterSpacing: "-0.12px",
+              padding: "5px 12px",
+              borderRadius: "9999px",
+              backgroundColor: "#0066cc",
+              color: "#ffffff",
+            }}
+          >
+            All
+          </span>
           {categories.map((cat) => (
-            <span key={cat} className="badge cursor-pointer hover:bg-brand-200">
+            <span
+              key={cat}
+              className="inline-flex items-center font-medium cursor-pointer"
+              style={{
+                fontSize: "12px",
+                lineHeight: 1.0,
+                letterSpacing: "-0.12px",
+                padding: "5px 12px",
+                borderRadius: "9999px",
+                backgroundColor: "#ffffff",
+                color: "#1d1d1f",
+                border: "1px solid #e0e0e0",
+              }}
+            >
               {cat}
             </span>
           ))}
@@ -46,12 +90,28 @@ export default async function ShopPage() {
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border-2 border-dashed border-gray-200 p-16 text-center">
-          <ShoppingBag className="mx-auto h-12 w-12 text-gray-300" />
-          <h3 className="mt-4 text-lg font-semibold text-gray-900">
+        <div
+          className="p-16 text-center"
+          style={{
+            borderRadius: "18px",
+            border: "2px dashed #e0e0e0",
+          }}
+        >
+          <ShoppingBag
+            className="mx-auto"
+            size={48}
+            style={{ color: "#d2d2d7" }}
+          />
+          <h3
+            className="mt-4"
+            style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
+          >
             Products Coming Soon
           </h3>
-          <p className="mt-2 text-sm text-gray-500">
+          <p
+            className="mt-2"
+            style={{ fontSize: "14px", color: "#7a7a7a" }}
+          >
             Check back soon or visit my Etsy shop directly.
           </p>
           <a

@@ -32,17 +32,26 @@ export default async function VideoDetailPage({ params }: Props) {
   if (!video) notFound();
 
   return (
-    <div className="container-page py-12 sm:py-16">
+    <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>
       <Link
         href="/videos"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900"
+        className="mb-6 inline-flex items-center gap-1 transition-colors"
+        style={{
+          fontSize: "14px",
+          fontWeight: 400,
+          letterSpacing: "-0.224px",
+          color: "#0066cc",
+        }}
       >
         <ArrowLeft size={14} /> Back to Videos
       </Link>
 
       <div className="mx-auto max-w-4xl">
-        {/* Video Embed */}
-        <div className="relative aspect-video overflow-hidden rounded-xl bg-black">
+        {/* Video Embed – full-bleed style (0 radius) */}
+        <div
+          className="relative aspect-video overflow-hidden"
+          style={{ backgroundColor: "#000000", borderRadius: "0" }}
+        >
           <iframe
             src={`https://www.youtube.com/embed/${video.video_id}`}
             title={video.title}
@@ -54,12 +63,30 @@ export default async function VideoDetailPage({ params }: Props) {
 
         {/* Video Info */}
         <div className="mt-6">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          <h1
+            style={{
+              fontFamily:
+                '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+              fontSize: "40px",
+              fontWeight: 600,
+              lineHeight: 1.1,
+              color: "#1d1d1f",
+            }}
+          >
             {video.title}
           </h1>
 
-          <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
-            <span className="inline-flex items-center gap-1">
+          <div className="mt-3 flex flex-wrap items-center gap-4">
+            <span
+              className="inline-flex items-center gap-1"
+              style={{
+                fontSize: "14px",
+                fontWeight: 400,
+                lineHeight: 1.43,
+                letterSpacing: "-0.224px",
+                color: "#7a7a7a",
+              }}
+            >
               <Calendar size={14} />
               {new Date(video.published_at).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -68,7 +95,16 @@ export default async function VideoDetailPage({ params }: Props) {
               })}
             </span>
             {video.view_count !== null && (
-              <span className="inline-flex items-center gap-1">
+              <span
+                className="inline-flex items-center gap-1"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  lineHeight: 1.43,
+                  letterSpacing: "-0.224px",
+                  color: "#7a7a7a",
+                }}
+              >
                 <Eye size={14} />
                 {video.view_count.toLocaleString()} views
               </span>
@@ -77,14 +113,30 @@ export default async function VideoDetailPage({ params }: Props) {
               href={video.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-brand-700 hover:text-brand-800"
+              className="inline-flex items-center gap-1"
+              style={{
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#0066cc",
+              }}
             >
               Watch on YouTube <ExternalLink size={14} />
             </a>
           </div>
 
           {video.description && (
-            <div className="mt-6 whitespace-pre-wrap rounded-lg bg-gray-50 p-4 text-sm text-gray-600">
+            <div
+              className="mt-6 whitespace-pre-wrap"
+              style={{
+                borderRadius: "11px",
+                backgroundColor: "#f5f5f7",
+                padding: "17px",
+                fontSize: "14px",
+                lineHeight: 1.43,
+                letterSpacing: "-0.224px",
+                color: "#333333",
+              }}
+            >
               {video.description}
             </div>
           )}

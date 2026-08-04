@@ -3,31 +3,56 @@ import { NAV_LINKS, SITE_NAME, SOCIAL_LINKS } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50">
-      <div className="container-page py-12">
+    <footer style={{ backgroundColor: "#f5f5f7" }}>
+      <div className="container-page" style={{ paddingTop: "64px", paddingBottom: "64px" }}>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-700 text-xs font-bold text-white">
-                JS
-              </div>
-              <span className="font-bold text-gray-900">{SITE_NAME}</span>
-            </div>
-            <p className="mt-3 text-sm text-gray-500">
+            <span
+              className="font-semibold"
+              style={{ fontSize: "14px", color: "#1d1d1f" }}
+            >
+              {SITE_NAME}
+            </span>
+            <p
+              style={{
+                marginTop: "12px",
+                fontSize: "14px",
+                lineHeight: 1.43,
+                letterSpacing: "-0.224px",
+                color: "#7a7a7a",
+              }}
+            >
               Golf gear reviews, simulator setups, and custom Etsy products.
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900">Navigation</h3>
-            <ul className="mt-3 space-y-2">
+            <h3
+              style={{
+                fontSize: "14px",
+                fontWeight: 600,
+                lineHeight: 1.43,
+                letterSpacing: "-0.224px",
+                color: "#1d1d1f",
+              }}
+            >
+              Navigation
+            </h3>
+            <ul style={{ marginTop: "12px" }} className="space-y-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-500 hover:text-gray-900"
+                    className="transition-colors hover:underline"
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 400,
+                      lineHeight: 2.41,
+                      letterSpacing: "-0.12px",
+                      color: "#424245",
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -38,12 +63,29 @@ export default function Footer() {
 
           {/* Content */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900">Content</h3>
-            <ul className="mt-3 space-y-2">
+            <h3
+              style={{
+                fontSize: "14px",
+                fontWeight: 600,
+                lineHeight: 1.43,
+                letterSpacing: "-0.224px",
+                color: "#1d1d1f",
+              }}
+            >
+              Content
+            </h3>
+            <ul style={{ marginTop: "12px" }} className="space-y-2">
               <li>
                 <Link
                   href="/home-tee-hero-course-request"
-                  className="text-sm text-gray-500 hover:text-gray-900"
+                  className="transition-colors hover:underline"
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: 2.41,
+                    letterSpacing: "-0.12px",
+                    color: "#424245",
+                  }}
                 >
                   HTH Course Request
                 </Link>
@@ -53,7 +95,14 @@ export default function Footer() {
                   href={SOCIAL_LINKS.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-gray-900"
+                  className="transition-colors hover:underline"
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: 2.41,
+                    letterSpacing: "-0.12px",
+                    color: "#424245",
+                  }}
                 >
                   YouTube Channel
                 </a>
@@ -63,7 +112,14 @@ export default function Footer() {
                   href={SOCIAL_LINKS.etsy}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-gray-900"
+                  className="transition-colors hover:underline"
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: 2.41,
+                    letterSpacing: "-0.12px",
+                    color: "#424245",
+                  }}
                 >
                   Etsy Shop
                 </a>
@@ -73,14 +129,31 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900">Connect</h3>
-            <ul className="mt-3 space-y-2">
+            <h3
+              style={{
+                fontSize: "14px",
+                fontWeight: 600,
+                lineHeight: 1.43,
+                letterSpacing: "-0.224px",
+                color: "#1d1d1f",
+              }}
+            >
+              Connect
+            </h3>
+            <ul style={{ marginTop: "12px" }} className="space-y-2">
               <li>
                 <a
                   href={SOCIAL_LINKS.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-gray-900"
+                  className="transition-colors hover:underline"
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: 2.41,
+                    letterSpacing: "-0.12px",
+                    color: "#424245",
+                  }}
                 >
                   YouTube
                 </a>
@@ -90,7 +163,14 @@ export default function Footer() {
                   href={SOCIAL_LINKS.etsy}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-gray-900"
+                  className="transition-colors hover:underline"
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: 2.41,
+                    letterSpacing: "-0.12px",
+                    color: "#424245",
+                  }}
                 >
                   Etsy
                 </a>
@@ -99,8 +179,23 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-gray-200 pt-6">
-          <p className="text-center text-xs text-gray-400">
+        <div
+          style={{
+            marginTop: "40px",
+            paddingTop: "24px",
+            borderTop: "1px solid #e0e0e0",
+          }}
+        >
+          <p
+            className="text-center"
+            style={{
+              fontSize: "12px",
+              fontWeight: 400,
+              lineHeight: 1.0,
+              letterSpacing: "-0.12px",
+              color: "#7a7a7a",
+            }}
+          >
             &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
         </div>

@@ -11,30 +11,53 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header
+      className="sticky top-0 z-50"
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.92)",
+        backdropFilter: "saturate(180%) blur(20px)",
+        WebkitBackdropFilter: "saturate(180%) blur(20px)",
+      }}
+    >
       <div className="container-page">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex items-center justify-between" style={{ height: "44px" }}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-700 text-sm font-bold text-white">
-              JS
-            </div>
-            <span className="hidden text-lg font-bold text-gray-900 sm:block">
+            <span
+              className="font-semibold text-white"
+              style={{ fontSize: "14px", letterSpacing: "-0.12px" }}
+            >
               {SITE_NAME}
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-6 md:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  pathname === link.href
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                }`}
+                className="transition-colors"
+                style={{
+                  fontSize: "12px",
+                  fontWeight: 400,
+                  lineHeight: 1.0,
+                  letterSpacing: "-0.12px",
+                  color:
+                    pathname === link.href
+                      ? "#2997ff"
+                      : "rgba(255, 255, 255, 0.8)",
+                }}
+                onMouseEnter={(e) => {
+                  if (pathname !== link.href) {
+                    e.currentTarget.style.color = "#ffffff";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (pathname !== link.href) {
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
+                  }
+                }}
               >
                 {link.label}
               </Link>
@@ -44,26 +67,35 @@ export default function Header() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden"
+            className="inline-flex items-center justify-center p-1 md:hidden"
+            style={{ color: "rgba(255, 255, 255, 0.8)" }}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <nav className="border-t border-gray-200 pb-4 pt-2 md:hidden">
+          <nav
+            className="pb-4 pt-2 md:hidden"
+            style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}
+          >
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  pathname === link.href
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                }`}
+                className="block py-2"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  letterSpacing: "-0.12px",
+                  color:
+                    pathname === link.href
+                      ? "#2997ff"
+                      : "rgba(255, 255, 255, 0.8)",
+                }}
               >
                 {link.label}
               </Link>

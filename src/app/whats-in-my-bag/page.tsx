@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ContentRenderer from "@/components/content/ContentRenderer";
 import { getContentPage } from "@/lib/data";
+import { pageMeta } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta("/whats-in-my-bag", {
   title: "What's In My Bag",
   description:
-    "A complete breakdown of the golf equipment Justin Sobojinski carries on the course — clubs, balls, accessories, and more.",
-};
+    "The clubs, ball, and gear Justin Sobojinski currently carries.",
+});
 
 export default async function WhatsInMyBagPage() {
   const page = await getContentPage("whats-in-my-bag");

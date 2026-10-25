@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
 import Image from "next/image";
-import { ExternalLink, Tag, Copy } from "lucide-react";
+import { ExternalLink, Copy } from "lucide-react";
 import { getAffiliateLinks, getAffiliateCategories } from "@/lib/data";
+import { pageMeta } from "@/lib/metadata";
 import type { AffiliateLink } from "@/types/database";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta("/deals", {
   title: "Deals & Affiliate Links",
   description:
-    "Golf gear deals and affiliate links — products Justin Sobojinski personally uses and recommends.",
-};
+    "PlayBetter, GOLFTEC, and TheStack — affiliate links Justin Sobojinski uses.",
+});
+
+function offerLinks(link: AffiliateLink) {
+  return (link.links ?? []).filter((item) => item.url && item.url !== "#");
+}
 
 function DealCard({ link }: { link: AffiliateLink }) {
-  return (
-    <a
-      href={link.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card group flex flex-col"
-    >
+  const options = offerLinks(link);
+  const inner = (
+    <>
       {link.image_url && (
         <div
           className="relative aspect-[16/10] overflow-hidden"
@@ -80,7 +80,7 @@ function DealCard({ link }: { link: AffiliateLink }) {
                 {link.discount_text || "Use code"}
               </p>
               <p
-                className="font-mono"
+                className="font-mono break-all"
                 style={{
                   fontSize: "14px",
                   fontWeight: 600,
@@ -92,17 +92,58 @@ function DealCard({ link }: { link: AffiliateLink }) {
             </div>
           </div>
         )}
-        <span
-          className="mt-auto inline-flex items-center gap-1 pt-4"
-          style={{
-            fontSize: "17px",
-            fontWeight: 500,
-            color: "#0066cc",
-          }}
-        >
-          Get Deal <ExternalLink size={14} />
-        </span>
+        {link.discount_text && !link.discount_code && (
+          <p
+            className="mt-3"
+            style={{ fontSize: "14px", fontWeight: 600, color: "#1d1d1f" }}
+          >
+            {link.discount_text}
+          </p>
+        )}
+        {options.length > 0 ? (
+          <ul className="mt-4 space-y-2">
+            {options.map((item) => (
+              <li key={item.url}>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="inline-flex items-center gap-1"
+                  style={{ fontSize: "14px", fontWeight: 500, color: "#0066cc" }}
+                >
+                  {item.label} <ExternalLink size={12} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span
+            className="mt-auto inline-flex items-center gap-1 pt-4"
+            style={{
+              fontSize: "17px",
+              fontWeight: 500,
+              color: "#0066cc",
+            }}
+          >
+            Get Deal <ExternalLink size={14} />
+          </span>
+        )}
       </div>
+    </>
+  );
+
+  if (options.length > 0) {
+    return <div className="card group flex flex-col">{inner}</div>;
+  }
+
+  return (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      className="card group flex flex-col"
+    >
+      {inner}
     </a>
   );
 }
@@ -180,33 +221,11 @@ export default async function DealsPage() {
         </div>
       )}
 
-      {links.length > 0 ? (
+      {links.length > 0 && (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((link) => (
             <DealCard key={link.id} link={link} />
           ))}
-        </div>
-      ) : (
-        <div
-          className="p-16 text-center"
-          style={{
-            borderRadius: "18px",
-            border: "2px dashed #e0e0e0",
-          }}
-        >
-          <Tag className="mx-auto" size={48} style={{ color: "#d2d2d7" }} />
-          <h3
-            className="mt-4"
-            style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
-          >
-            Deals Coming Soon
-          </h3>
-          <p
-            className="mt-2"
-            style={{ fontSize: "14px", color: "#7a7a7a" }}
-          >
-            Affiliate links and gear recommendations will appear here.
-          </p>
         </div>
       )}
 

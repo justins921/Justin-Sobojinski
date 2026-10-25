@@ -23,7 +23,7 @@ export default function Footer() {
                 color: "#7a7a7a",
               }}
             >
-              Golf gear reviews, simulator setups, and custom Etsy products.
+              Golf videos, a home simulator, and Precision Point ball markers.
             </p>
           </div>
 

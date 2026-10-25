@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Calendar, Eye } from "lucide-react";
 import { getVideoBySlug } from "@/lib/data";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -12,13 +11,23 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const video = await getVideoBySlug(slug);
-  if (!video) return { title: "Video Not Found" };
+  if (!video) {
+    return {
+      title: "Video Not Found",
+      robots: { index: false, follow: false },
+    };
+  }
+  const description =
+    video.description?.slice(0, 160) ?? `Watch ${video.title} on ${SITE_NAME}`;
+  const url = `${SITE_URL}/videos/${video.slug}`;
   return {
     title: video.title,
-    description: video.description?.slice(0, 160) ?? `Watch ${video.title} on ${SITE_NAME}`,
+    description,
+    alternates: { canonical: url },
     openGraph: {
       title: video.title,
-      description: video.description?.slice(0, 160) ?? undefined,
+      description,
+      url,
       images: video.thumbnail_high_url
         ? [{ url: video.thumbnail_high_url }]
         : undefined,
@@ -29,7 +38,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function VideoDetailPage({ params }: Props) {
   const { slug } = await params;
   const video = await getVideoBySlug(slug);
-  if (!video) notFound();
+  if (!video) {
+    return (
+      <div className="container-page flex flex-col items-center justify-center py-24">
+        <h1
+          style={{
+            fontFamily:
+              '"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontSize: "40px",
+            fontWeight: 600,
+            lineHeight: 1.1,
+            color: "#1d1d1f",
+          }}
+        >
+          Video not found
+        </h1>
+        <p className="mt-4" style={{ fontSize: "17px", color: "#7a7a7a" }}>
+          That video isn&apos;t on the channel.
+        </p>
+        <Link href="/videos" className="btn-primary mt-8">
+          Back to Videos
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>

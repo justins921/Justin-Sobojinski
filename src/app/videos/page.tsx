@@ -1,14 +1,17 @@
-import type { Metadata } from "next";
 import { Youtube } from "lucide-react";
 import VideoCard from "@/components/ui/VideoCard";
 import VideoSearch from "@/components/videos/VideoSearch";
 import { getVideos } from "@/lib/data";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import { pageMeta } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const revalidate = 3600;
+
+export const metadata = pageMeta("/videos", {
   title: "Videos",
   description:
-    "Browse the full YouTube video library from Justin Sobojinski Golf — reviews, simulator content, course plays, and more.",
-};
+    "Latest uploads from Justin Sobojinski's YouTube channel.",
+});
 
 interface Props {
   searchParams: Promise<{ q?: string }>;
@@ -44,7 +47,7 @@ export default async function VideosPage({ searchParams }: Props) {
             color: "#7a7a7a",
           }}
         >
-          Searchable archive of all YouTube uploads.
+          Latest uploads from the channel.
         </p>
       </div>
 
@@ -73,7 +76,7 @@ export default async function VideosPage({ searchParams }: Props) {
             className="mt-4"
             style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
           >
-            {search ? "No videos found" : "No Videos Yet"}
+            {search ? "No videos found" : "No videos to show"}
           </h3>
           <p
             className="mt-2"
@@ -81,8 +84,18 @@ export default async function VideosPage({ searchParams }: Props) {
           >
             {search
               ? `No videos matching "${search}". Try a different search.`
-              : "Videos will appear here once the YouTube sync is configured."}
+              : "New uploads will show up here from the channel."}
           </p>
+          {!search && (
+            <a
+              href={SOCIAL_LINKS.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-6"
+            >
+              Watch on YouTube
+            </a>
+          )}
         </div>
       )}
     </div>

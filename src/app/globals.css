@@ -191,4 +191,9 @@
     color: var(--color-ink-muted-80);
     margin-bottom: 17px;
   }
+  .prose-content a {
+    color: #0066cc;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 }

@@ -31,7 +31,7 @@ Required variables:
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase anonymous key
 - `SUPABASE_SERVICE_ROLE_KEY` — Supabase service role key (server-side only)
 - `YOUTUBE_API_KEY` — YouTube Data API v3 key
-- `YOUTUBE_CHANNEL_HANDLE` — Your YouTube handle (e.g., `@JustinSobojinskiGolf`)
+- `YOUTUBE_CHANNEL_HANDLE` — Your YouTube handle (e.g., `@justinsobojinski`)
 
 Optional:
 - `NOTION_API_KEY` — For importing content from Notion pages

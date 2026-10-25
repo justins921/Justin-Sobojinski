@@ -203,7 +203,7 @@ export default function AdminDealsPage() {
                     type="text"
                     value={editing.discount_code || ""}
                     onChange={(e) => setEditing({ ...editing, discount_code: e.target.value })}
-                    placeholder="e.g., JUSTIN10"
+                    placeholder="Discount code"
                     className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
@@ -213,7 +213,7 @@ export default function AdminDealsPage() {
                     type="text"
                     value={editing.discount_text || ""}
                     onChange={(e) => setEditing({ ...editing, discount_text: e.target.value })}
-                    placeholder="e.g., 10% off with code"
+                    placeholder="Discount details"
                     className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>

@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Youtube } from "lucide-react";
-import VideoCard from "@/components/ui/VideoCard";
-import VideoSearch from "@/components/videos/VideoSearch";
+import VideoLibrary from "@/components/videos/VideoLibrary";
 import { getVideos } from "@/lib/data";
+import { pageMeta } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const revalidate = 3600;
+
+export const metadata = pageMeta("/videos", {
   title: "Videos",
   description:
-    "Browse the full YouTube video library from Justin Sobojinski Golf — reviews, simulator content, course plays, and more.",
-};
+    "Latest uploads from Justin Sobojinski's YouTube channel.",
+});
 
 interface Props {
   searchParams: Promise<{ q?: string }>;
@@ -17,7 +17,7 @@ interface Props {
 export default async function VideosPage({ searchParams }: Props) {
   const params = await searchParams;
   const search = params.q || "";
-  const videos = await getVideos({ search: search || undefined });
+  const videos = await getVideos();
 
   return (
     <div className="container-page" style={{ paddingTop: "48px", paddingBottom: "80px" }}>
@@ -44,47 +44,11 @@ export default async function VideosPage({ searchParams }: Props) {
             color: "#7a7a7a",
           }}
         >
-          Searchable archive of all YouTube uploads.
+          Latest uploads from the channel.
         </p>
       </div>
 
-      <VideoSearch initialQuery={search} />
-
-      {videos.length > 0 ? (
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {videos.map((video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-        </div>
-      ) : (
-        <div
-          className="mt-8 p-16 text-center"
-          style={{
-            borderRadius: "18px",
-            border: "2px dashed #e0e0e0",
-          }}
-        >
-          <Youtube
-            className="mx-auto"
-            size={48}
-            style={{ color: "#d2d2d7" }}
-          />
-          <h3
-            className="mt-4"
-            style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
-          >
-            {search ? "No videos found" : "No Videos Yet"}
-          </h3>
-          <p
-            className="mt-2"
-            style={{ fontSize: "14px", color: "#7a7a7a" }}
-          >
-            {search
-              ? `No videos matching "${search}". Try a different search.`
-              : "Videos will appear here once the YouTube sync is configured."}
-          </p>
-        </div>
-      )}
+      <VideoLibrary videos={videos} initialQuery={search} />
     </div>
   );
 }

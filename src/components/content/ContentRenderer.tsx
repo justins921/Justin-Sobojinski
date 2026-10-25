@@ -137,25 +137,26 @@ function renderBlock(block: ContentBlock, index: number) {
         >
           <span className="mt-0.5 shrink-0">{block.emoji || v.icon}</span>
           <div>
+            {block.title ? (
+              <p
+                style={{
+                  fontWeight: 600,
+                  fontSize: "17px",
+                  color: "#1d1d1f",
+                }}
+              >
+                {block.title}
+              </p>
+            ) : null}
             <p
-              style={{
-                fontWeight: 600,
-                fontSize: "17px",
-                color: "#1d1d1f",
-              }}
-            >
-              {block.title}
-            </p>
-            <p
-              className="mt-1"
+              className={block.title ? "mt-1" : undefined}
               style={{
                 fontSize: "14px",
                 lineHeight: 1.43,
                 color: "#333333",
               }}
-            >
-              {block.text}
-            </p>
+              dangerouslySetInnerHTML={{ __html: block.text }}
+            />
           </div>
         </div>
       );
@@ -324,27 +325,7 @@ export default function ContentRenderer({
 }: {
   blocks: ContentBlock[];
 }) {
-  if (!blocks || blocks.length === 0) {
-    return (
-      <div
-        className="p-12 text-center"
-        style={{
-          borderRadius: "18px",
-          border: "2px dashed #e0e0e0",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "14px",
-            color: "#7a7a7a",
-          }}
-        >
-          This page doesn&apos;t have any content yet. Add content via the admin
-          dashboard.
-        </p>
-      </div>
-    );
-  }
+  if (!blocks || blocks.length === 0) return null;
 
   return (
     <div className="prose-content">

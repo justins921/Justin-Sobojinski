@@ -107,6 +107,11 @@ export interface ProductCardBlock {
   price?: string;
 }
 
+export interface AffiliateOfferLink {
+  label: string;
+  url: string;
+}
+
 export interface AffiliateLink {
   id: string;
   title: string;
@@ -116,6 +121,8 @@ export interface AffiliateLink {
   category: string;
   discount_code: string | null;
   discount_text: string | null;
+  /** Extra destinations for one offer, such as TheStack product options. */
+  links?: AffiliateOfferLink[] | null;
   is_featured: boolean;
   sort_order: number;
   is_active: boolean;

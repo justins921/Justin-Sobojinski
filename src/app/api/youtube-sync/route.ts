@@ -1,8 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServiceClient } from "@/lib/supabase-server";
+import { YOUTUBE_CHANNEL_HANDLE } from "@/lib/constants";
 
 // Vercel Cron config
 export const maxDuration = 60;
+
+function resolveChannelHandle(): string {
+  const fromEnv = process.env.YOUTUBE_CHANNEL_HANDLE?.trim();
+  if (!fromEnv) return YOUTUBE_CHANNEL_HANDLE;
+  const normalized = fromEnv.startsWith("@") ? fromEnv : `@${fromEnv}`;
+  if (normalized.toLowerCase() === "@justinsobojinskigolf") return YOUTUBE_CHANNEL_HANDLE;
+  return normalized;
+}
 
 function slugify(text: string): string {
   return text
@@ -103,7 +112,7 @@ async function syncVideos() {
     );
   }
 
-  const channelHandle = process.env.YOUTUBE_CHANNEL_HANDLE || "@JustinSobojinskiGolf";
+  const channelHandle = resolveChannelHandle();
 
   try {
     const supabase = await createSupabaseServiceClient();

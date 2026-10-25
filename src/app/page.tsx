@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ShoppingBag,
@@ -10,7 +11,14 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ProductCard from "@/components/ui/ProductCard";
 import VideoCard from "@/components/ui/VideoCard";
 import { getProducts, getVideos } from "@/lib/data";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { SITE_DESCRIPTION, SOCIAL_LINKS } from "@/lib/constants";
+import { pageMeta } from "@/lib/metadata";
+
+export const revalidate = 3600;
+
+export const metadata: Metadata = pageMeta("", {
+  description: SITE_DESCRIPTION,
+});
 
 export default async function HomePage() {
   const [featuredProducts, latestVideos] = await Promise.all([
@@ -92,89 +100,48 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products – canvas/parchment */}
-      <section
-        style={{
-          backgroundColor: "#f5f5f7",
-          paddingTop: "80px",
-          paddingBottom: "80px",
-        }}
-      >
-        <div className="container-page">
-          <SectionHeader
-            title="Featured Products"
-            subtitle="Custom golf accessories from my Etsy shop"
-            href="/shop"
-            linkText="View All Products"
-          />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          {featuredProducts.length === 0 && (
-            <div
-              className="mt-8 p-12 text-center"
-              style={{
-                borderRadius: "18px",
-                border: "2px dashed #e0e0e0",
-              }}
-            >
-              <ShoppingBag
-                className="mx-auto"
-                size={40}
-                style={{ color: "#d2d2d7" }}
-              />
-              <p
-                className="mt-3"
-                style={{ fontSize: "14px", color: "#7a7a7a" }}
-              >
-                Products will appear here once added in the admin dashboard.
-              </p>
+      {featuredProducts.length > 0 && (
+        <section
+          style={{
+            backgroundColor: "#f5f5f7",
+            paddingTop: "80px",
+            paddingBottom: "80px",
+          }}
+        >
+          <div className="container-page">
+            <SectionHeader
+              title="Featured Products"
+              subtitle="Precision Point ball markers from my Etsy shop"
+              href="/shop"
+              linkText="View All Products"
+            />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
-      {/* Latest Videos – dark tile */}
-      <section style={{ backgroundColor: "#272729", paddingTop: "80px", paddingBottom: "80px" }}>
-        <div className="container-page">
-          <SectionHeader
-            title="Latest Videos"
-            subtitle="New uploads from my YouTube channel"
-            href="/videos"
-            linkText="View All Videos"
-            dark
-          />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {latestVideos.map((video) => (
-              <VideoCard key={video.id} video={video} />
-            ))}
-          </div>
-          {latestVideos.length === 0 && (
-            <div
-              className="mt-8 p-12 text-center"
-              style={{
-                borderRadius: "18px",
-                border: "2px dashed rgba(255, 255, 255, 0.15)",
-                backgroundColor: "rgba(255, 255, 255, 0.05)",
-              }}
-            >
-              <Youtube
-                className="mx-auto"
-                size={40}
-                style={{ color: "rgba(255, 255, 255, 0.3)" }}
-              />
-              <p
-                className="mt-3"
-                style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)" }}
-              >
-                Videos will appear here once the YouTube sync is configured.
-              </p>
+      {latestVideos.length > 0 && (
+        <section style={{ backgroundColor: "#272729", paddingTop: "80px", paddingBottom: "80px" }}>
+          <div className="container-page">
+            <SectionHeader
+              title="Latest Videos"
+              subtitle="New uploads from my YouTube channel"
+              href="/videos"
+              linkText="View All Videos"
+              dark
+            />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestVideos.map((video) => (
+                <VideoCard key={video.id} video={video} />
+              ))}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Explore – parchment */}
       <section

@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ContentRenderer from "@/components/content/ContentRenderer";
 import { getContentPage } from "@/lib/data";
+import { pageMeta } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta("/golf-simulator-setup", {
   title: "Golf Simulator Setup",
   description:
-    "Everything about Justin Sobojinski's home golf simulator setup — hardware, software, and recommendations.",
-};
+    "Justin Sobojinski's home golf simulator — Garmin R50, GSPro, Home Tee Hero, and the rest of the build.",
+});
 
 export default async function GolfSimulatorSetupPage() {
   const page = await getContentPage("golf-simulator-setup");

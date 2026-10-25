@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { ShoppingBag } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 import { getProducts } from "@/lib/data";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import { pageMeta } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta("/shop", {
   title: "Shop",
   description:
-    "Browse custom golf accessories, ball markers, and more from Justin Sobojinski's Etsy shop.",
-};
+    "Precision Point ball markers from Justin Sobojinski's Etsy shop.",
+});
 
 export default async function ShopPage() {
   const products = await getProducts();
@@ -40,7 +41,7 @@ export default async function ShopPage() {
             color: "#7a7a7a",
           }}
         >
-          Custom golf accessories, handcrafted and available on Etsy.
+          3D-printed Precision Point ball markers, available on Etsy.
         </p>
       </div>
 
@@ -84,7 +85,7 @@ export default async function ShopPage() {
 
       {/* Product grid */}
       {products.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -102,20 +103,8 @@ export default async function ShopPage() {
             size={48}
             style={{ color: "#d2d2d7" }}
           />
-          <h3
-            className="mt-4"
-            style={{ fontSize: "17px", fontWeight: 600, color: "#1d1d1f" }}
-          >
-            Products Coming Soon
-          </h3>
-          <p
-            className="mt-2"
-            style={{ fontSize: "14px", color: "#7a7a7a" }}
-          >
-            Check back soon or visit my Etsy shop directly.
-          </p>
           <a
-            href="https://www.etsy.com/shop/JustinSobojinskiGolf"
+            href={SOCIAL_LINKS.etsy}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary mt-6"
